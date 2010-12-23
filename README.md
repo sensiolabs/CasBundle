@@ -1,7 +1,9 @@
 Adds the CAS authentication to Symfony 2
 ========================================
 
-[More informations about CAS](http://www.jasig.org/cas)
+[More informations about CAS](http://www.jasig.org/cas).
+
+Unlike [SimpleCasBundle](https://github.com/jmikola/SimpleCASBundle), it's based on the Symfony2 security component.
 
 
 Install the Bundle

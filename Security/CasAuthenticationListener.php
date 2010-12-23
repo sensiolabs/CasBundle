@@ -13,24 +13,66 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\Event;
 use Bundle\Sensio\CasBundle\Service\Cas;
 
-class CasAuthenticationListener extends PreAuthenticatedListener implements ListenerInterface
+class CasAuthenticationListener implements ListenerInterface
 {
     protected $cas;
 
     public function __construct(SecurityContext $securityContext, AuthenticationManagerInterface $authenticationManager, Cas $cas, LoggerInterface $logger = null)
     {
-        parent::__construct($securityContext, $authenticationManager, $logger);
+        $this->securityContext = $securityContext;
+        $this->authenticationManager = $authenticationManager;
         $this->cas = $cas;
+        $this->logger = $logger;
+    }
+
+    public function register(EventDispatcher $dispatcher)
+    {
+        $dispatcher->connect('core.security', array($this, 'handle'), 0);
+    }
+
+    public function unregister(EventDispatcher $dispatcher)
+    {
     }
 
     public function handle(Event $event)
     {
-        if($this->cas->isValidationRequest($event->get('request'))) {
-            parent::handle($event);
+        if(! $this->cas->isValidationRequest($event->get('request'))) {
+            return;
+        }
+
+        if (null !== $this->logger) {
+            $this->logger->debug(sprintf('Checking secure context token: %s', $this->securityContext->getToken()));
+        }
+
+        list($username, $attributes) = $this->getTokenData($event->get('request'));
+
+        if (null !== $token = $this->securityContext->getToken()) {
+            if ($token->isImmutable()) {
+                return;
+            }
+
+            if ($token instanceof CasAuthenticationToken && $token->isAuthenticated() && (string) $token === $username) {
+                return;
+            }
+        }
+
+        try {
+            $token = $this->authenticationManager->authenticate(new CasAuthenticationToken($username, $attributes));
+
+            if (null !== $this->logger) {
+                $this->logger->debug(sprintf('Authentication success: %s', $token));
+            }
+            $this->securityContext->setToken($token);
+        } catch (AuthenticationException $failed) {
+            $this->securityContext->setToken(null);
+
+            if (null !== $this->logger) {
+                $this->logger->debug(sprintf("Cleared security context due to exception: %s", $failed->getMessage()));
+            }
         }
     }
 
-    protected function getPreAuthenticatedData(Request $request)
+    protected function getTokenData(Request $request)
     {
         $validation = $this->cas->getValidation($request);
 
