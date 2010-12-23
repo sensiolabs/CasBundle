@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://www.symfony-project.org/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+    <parameters>
+    	
+		<parameter key="cas.class">Bundle\CasBundle\Service\Cas</parameter>
+		<parameter key="cas.baseUri"></parameter>
+		<parameter key="cas.version">2</parameter>
+		<parameter key="cas.certFile">false</parameter>
+		<parameter key="cas.requestsType">curl</parameter>
+		
+		<parameter key="security.authentication.provider.cas.class">Bundle\CasBundle\Security\CasAuthenticationProvider</parameter>
+		<parameter key="security.authentication.cas_entry_point.class">Bundle\CasBundle\Security\CasAuthenticationEntryPoint</parameter>
+		<parameter key="security.authentication.listener.cas.class">Bundle\CasBundle\Security\CasAuthenticationListener</parameter>
+		<parameter key="security.authentication.factory.cas.class">Bundle\CasBundle\Security\CasAuthenticationFactory</parameter>
+		<parameter key="security.logout.handler.cas.class">Bundle\CasBundle\Security\CasLogoutHandler</parameter>
+		
+    </parameters>
+    <services>
+		
+    	<service id="cas" class="%cas.class%">
+            <argument>%cas.baseUri%</argument>
+			<argument>%cas.version%</argument>
+			<argument>%cas.certFile%</argument>
+			<argument>%cas.requestsType%</argument>
+        </service>
+		
+        <service id="security.authentication.cas_entry_point" class="%security.authentication.cas_entry_point.class%">
+        	<argument type="service" id="cas" />
+        </service>
+		
+		<service id="security.logout.handler.cas" class="%security.logout.handler.cas.class%">
+            <argument type="service" id="cas" />
+        </service>
+		
+		<service id="security.authentication.factory.cas" class="%security.authentication.factory.cas.class%">
+            <tag name="security.listener.factory" />
+        </service>
+		
+    </services>
+</container>
