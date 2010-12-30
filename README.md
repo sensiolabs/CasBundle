@@ -12,11 +12,15 @@ Install the Bundle
 
 Just copy/paste the following command :
 
-    git submodule add git@github.com:jfsimon/GMapBundle.git src/Bundle/Sensio
+    git submodule add git@github.com:sensio/CasBundle.git src/Bundle/Sensio/CasBundle
     
 Then add it to your AppKernel class :
 
-    new Bundle\Sensio\CasBundle\CasBundle(),
+    $bundles = array(
+        ...
+        new Bundle\Sensio\CasBundle\CasBundle(),
+        ...
+    );
     
 
 Configuration
