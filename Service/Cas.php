@@ -4,10 +4,14 @@ namespace Bundle\Sensio\CasBundle\Service;
 
 use Bundle\Sensio\CasBundle\Service\Protocole\V1Protocole;
 use Bundle\Sensio\CasBundle\Service\Protocole\V2Protocole;
+
 use Bundle\Sensio\CasBundle\Service\Request\CurlRequest;
+use Bundle\Sensio\CasBundle\Service\Request\HttpRequest;
 use Bundle\Sensio\CasBundle\Service\Request\FileRequest;
+
 use Bundle\Sensio\CasBundle\Service\Response\V1Response;
 use Bundle\Sensio\CasBundle\Service\Response\V2Response;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,13 +21,13 @@ class Cas
         $protocole,
         $version,
         $certFile,
-        $requestsType;
+        $requestType;
 
-    public function __construct($baseUri, $version = 2, $certFile = null, $requestsType = 'curl')
+    public function __construct($baseUri, $version = 2, $certFile = null, $requestType = 'curl')
     {
         $this->version = $version;
         $this->certFile = $certFile;
-        $this->requestsType = $requestsType;
+        $this->requestType = $requestsType;
         $this->protocole = $this->getProtocole($baseUri, $version);
     }
 
@@ -82,11 +86,12 @@ class Cas
 
     protected function getRequest($uri)
     {
-        switch(strtolower($this->requestsType))
+        switch(strtolower($this->requestType))
         {
             case 'curl': return new CurlRequest($uri);
+            case 'http': return new HttpRequest($uri);
             case 'file': return new FileRequest($uri);
-            default: throw new \Exception('Invalid CAS request type : '.(string)$this->requestsType);
+            default: throw new \Exception('Invalid CAS request type : '.(string)$this->requestType);
         }
     }
 

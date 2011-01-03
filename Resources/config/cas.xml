@@ -6,10 +6,10 @@
     <parameters>
     	
 		<parameter key="cas.class">Bundle\Sensio\CasBundle\Service\Cas</parameter>
-		<parameter key="cas.baseUri"></parameter>
+		<parameter key="cas.uri"></parameter>
 		<parameter key="cas.version">2</parameter>
-		<parameter key="cas.certFile">false</parameter>
-		<parameter key="cas.requestsType">curl</parameter>
+		<parameter key="cas.cert">false</parameter>
+		<parameter key="cas.request">curl</parameter>
 		
 		<parameter key="security.authentication.provider.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationProvider</parameter>
 		<parameter key="security.authentication.cas_entry_point.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationEntryPoint</parameter>
