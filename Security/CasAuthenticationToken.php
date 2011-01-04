@@ -6,7 +6,7 @@ use Symfony\Component\Security\Authentication\Token\Token;
 
 class CasAuthenticationToken extends Token
 {
-    protected $attributes;
+    protected $casAttributes;
 
     public function __construct($user, array $attributes = array(), $userProviderName = null, array $roles = array())
     {
@@ -15,12 +15,12 @@ class CasAuthenticationToken extends Token
         $this->setUser($user);
         $this->credentials = null;
         $this->userProviderName = $userProviderName;
-        $this->attributes = $attributes;
+        $this->casAttributes = $attributes;
 
         parent::setAuthenticated(true);
     }
 
-    public function getAttributes()
+    public function getCasAttributes()
     {
         return $this->attributes;
     }

@@ -27,7 +27,7 @@ class Cas
     {
         $this->version = $version;
         $this->certFile = $certFile;
-        $this->requestType = $requestsType;
+        $this->requestType = $requestType;
         $this->protocole = $this->getProtocole($baseUri, $version);
     }
 

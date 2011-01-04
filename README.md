@@ -32,7 +32,7 @@ Then add it to your AppKernel class :
 Configuration
 -------------
 
-Here is an example with the YAML format :
+Deadly simple, here is an example with the YAML format :
 
     cas.config:
         uri:      https://my.cas.server:8080/  # URI of the cas server
@@ -44,7 +44,7 @@ Here is an example with the YAML format :
 Use the firewall
 ----------------
 
-Here is an example with the YAML format :
+As usual, here is a simple example with the YAML format :
 
     security.config:
         providers:

@@ -62,6 +62,7 @@ class CasAuthenticationListener implements ListenerInterface
             if (null !== $this->logger) {
                 $this->logger->debug(sprintf('Authentication success: %s', $token));
             }
+
             $this->securityContext->setToken($token);
         } catch (AuthenticationException $failed) {
             $this->securityContext->setToken(null);

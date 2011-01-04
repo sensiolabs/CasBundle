@@ -11,20 +11,18 @@
 		<parameter key="cas.cert">false</parameter>
 		<parameter key="cas.request">curl</parameter>
 		
-		<parameter key="security.authentication.provider.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationProvider</parameter>
 		<parameter key="security.authentication.cas_entry_point.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationEntryPoint</parameter>
 		<parameter key="security.authentication.listener.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationListener</parameter>
-		<parameter key="security.authentication.factory.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationFactory</parameter>
 		<parameter key="security.logout.handler.cas.class">Bundle\Sensio\CasBundle\Security\CasLogoutHandler</parameter>
 		
     </parameters>
     <services>
 		
     	<service id="cas" class="%cas.class%">
-            <argument>%cas.baseUri%</argument>
+            <argument>%cas.uri%</argument>
 			<argument>%cas.version%</argument>
-			<argument>%cas.certFile%</argument>
-			<argument>%cas.requestsType%</argument>
+			<argument>%cas.cert%</argument>
+			<argument>%cas.request%</argument>
         </service>
 		
         <service id="security.authentication.cas_entry_point" class="%security.authentication.cas_entry_point.class%">
@@ -33,10 +31,6 @@
 		
 		<service id="security.logout.handler.cas" class="%security.logout.handler.cas.class%">
             <argument type="service" id="cas" />
-        </service>
-		
-		<service id="security.authentication.factory.cas" class="%security.authentication.factory.cas.class%">
-            <tag name="security.listener.factory" />
         </service>
 		
     </services>
