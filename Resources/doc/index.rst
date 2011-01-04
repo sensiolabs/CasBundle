@@ -13,13 +13,15 @@ Install the Bundle
 
 2.  Add the sources from github.com (GIT must be installed ;)
 
+    .. code-block:: text
+
         // if your you're using git for your project
         git submodule add git@github.com:sensio/CasBundle.git src/Bundle/Sensio/CasBundle
         
-        // or if your project is not under git control :
+        // or if your project is not under git control
         git clone git@github.com:sensio/CasBundle.git
     
-3.  Then add it to your AppKernel class :
+3.  Then add it to your AppKernel class::
 
         // in AppKernel::registerBundles()
         $bundles = array(
@@ -32,7 +34,7 @@ Install the Bundle
 Configuration
 -------------
 
-Deadly simple, here is an example :
+Deadly simple, here is an example:
 
 .. configuration-block::
 
@@ -62,7 +64,7 @@ Deadly simple, here is an example :
         ));
         
 In addition, the security component must be aware of the new factory and listeners included in the bundle.
-In order to to it, just look at the following example in YAML :
+In order to to it, just look at the following example in YAML:
 
 .. configuration-block::
 
@@ -90,7 +92,7 @@ In order to to it, just look at the following example in YAML :
 Use the firewall
 ----------------
 
-As usual, here is a simple example (with the template) :
+As usual, here is a simple example (with the template):
 
 .. configuration-block::
 
@@ -142,3 +144,4 @@ As usual, here is a simple example (with the template) :
                 )
             )
         ));
+ 
