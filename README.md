@@ -1,31 +1,31 @@
 Adds the CAS authentication to Symfony 2
 ========================================
 
-[More informations about CAS (Central Authentication Service)](http://www.jasig.org/cas).
-
-Unlike [SimpleCasBundle](https://github.com/jmikola/SimpleCASBundle), it's based on the Symfony2 security component.
+-  [More informations about CAS (Central Authentication Service)](http://www.jasig.org/cas).
+-  Unlike [SimpleCasBundle](https://github.com/jmikola/SimpleCASBundle), it's based on the Symfony2 security component.
+-  Proxy features are not yet available.
 
 
 Install the Bundle
 ------------------
 
-Create a `Sensio` directory (if not exists) in your `src/Bundle` directory.
+1.  Create a `Sensio` directory (if not exists) in your `src/Bundle` directory.
 
-Use the following command if your project is under GIT control (from the root project directory) :
+2.  Add the sources from github.com (GIT must be installed ;)
 
+    // if your you're using git for your project
     git submodule add git@github.com:sensio/CasBundle.git src/Bundle/Sensio/CasBundle
     
-If your project dont use GIT, just go into the `src/Bundle/Sensio` directory and clone the project :
-
+    // or if your project is not under git control :
     git clone git@github.com:sensio/CasBundle.git
     
-Then add it to your AppKernel class :
+3.  Then add it to your AppKernel class :
 
     // in AppKernel::registerBundles()
     $bundles = array(
-        ...
+        // ...
         new Bundle\Sensio\CasBundle\CasBundle(),
-        ...
+        // ...
     );
     
 
