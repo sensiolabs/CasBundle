@@ -13,20 +13,20 @@ Install the Bundle
 
 2.  Add the sources from github.com (GIT must be installed ;)
 
-    // if your you're using git for your project
-    git submodule add git@github.com:sensio/CasBundle.git src/Bundle/Sensio/CasBundle
-    
-    // or if your project is not under git control :
-    git clone git@github.com:sensio/CasBundle.git
+        // if your you're using git for your project
+        git submodule add git@github.com:sensio/CasBundle.git src/Bundle/Sensio/CasBundle
+        
+        // or if your project is not under git control :
+        git clone git@github.com:sensio/CasBundle.git
     
 3.  Then add it to your AppKernel class :
 
-    // in AppKernel::registerBundles()
-    $bundles = array(
-        // ...
-        new Bundle\Sensio\CasBundle\CasBundle(),
-        // ...
-    );
+        // in AppKernel::registerBundles()
+        $bundles = array(
+            // ...
+            new Bundle\Sensio\CasBundle\CasBundle(),
+            // ...
+        );
     
 
 Configuration
