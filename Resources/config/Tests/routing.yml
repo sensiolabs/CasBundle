@@ -1,0 +1,15 @@
+cas_service:
+    pattern:  /cas/service
+    defaults: { _controller: Sensio/CasBundle/Tests:CasBundleTests:service }
+    
+cas_protected:
+    pattern:  /cas/protected
+    defaults: { _controller: Sensio/CasBundle/Tests:CasBundleTests:protected }
+
+cas_validate_v1:
+    pattern:  /cas/server/validate
+    defaults: { _controller: Sensio/CasBundle/Tests:CasBundleTests:validateV1 }
+
+cas_validate_v2:
+    pattern:  /cas/server/serviceValidate
+    defaults: { _controller: Sensio/CasBundle/Tests:CasBundleTests:validateV2 }

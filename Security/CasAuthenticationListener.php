@@ -55,7 +55,6 @@ class CasAuthenticationListener implements ListenerInterface
                 return;
             }
         }
-
         try {
             $token = $this->authenticationManager->authenticate(new CasAuthenticationToken($username, $attributes));
 

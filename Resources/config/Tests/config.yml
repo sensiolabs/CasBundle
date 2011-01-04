@@ -1,0 +1,15 @@
+security.config:
+    providers:
+        provider:
+            users:   { user-id: { roles: ROLE_USER } }
+    firewalls:
+        firewall:
+            pattern: /cas/protected
+            cas:     { provider: provider }
+    template:        %kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml
+
+cas.config:
+    uri:             http://sandbox.dev/cas/server
+    version:         2
+    cert:            ~
+    request:         file
