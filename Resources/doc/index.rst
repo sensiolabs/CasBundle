@@ -16,10 +16,10 @@ Install the Bundle
 
         // if your you're using git for your project
         git submodule add git@github.com:sensio/CasBundle.git src/Bundle/Sensio/CasBundle
-        
+
         // or if your project is not under git control
         git clone git@github.com:sensio/CasBundle.git
-    
+
 3. Then add it to your AppKernel class::
 
         // in AppKernel::registerBundles()
@@ -28,7 +28,6 @@ Install the Bundle
             new Bundle\Sensio\CasBundle\CasBundle(),
             // ...
         );
-    
 
 Configuration
 -------------
@@ -61,7 +60,7 @@ Deadly simple, here is an example:
             'cert'    => '/path/to/my/cert.pem',
             'request' => 'curl',
         ));
-        
+
 In addition, the security component must be aware of the new factory and listeners included in the bundle.
 In order to to it, just look at the following example in YAML:
 
@@ -86,8 +85,7 @@ In order to to it, just look at the following example in YAML:
                 '%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml'
             )
         ));
-        
-        
+
 Use the firewall
 ----------------
 
@@ -120,9 +118,9 @@ As usual, here is a simple example (with the template):
                 <cas provider="my_provider" />
             </firewall>
         </security:config>
-            
+
     .. code-block:: php
-    
+
         $container->loadFromExtension('security', 'config', array(
             'templates' => array(
                 '%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml'
@@ -143,7 +141,7 @@ As usual, here is a simple example (with the template):
                 )
             )
         ));
- 
- .. _CAS:             http://www.jasig.org/cas
- .. _SimpleCasBundle: https://github.com/jmikola/SimpleCASBundle
+
+.. _CAS:             http://www.jasig.org/cas
+.. _SimpleCasBundle: https://github.com/jmikola/SimpleCASBundle
  
