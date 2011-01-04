@@ -3,11 +3,14 @@
 <container xmlns="http://www.symfony-project.org/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
-    <services>
+    <parameters>
     	
 		<parameter key="security.authentication.factory.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationFactory</parameter>
-		<parameter key="security.authentication.listener.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationListener</parameter>
-		<parameter key="security.authentication.provider.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationProvider</parameter>
+        <parameter key="security.authentication.listener.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationListener</parameter>
+        <parameter key="security.authentication.provider.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationProvider</parameter>
+		
+	</parameters>
+	<services>
     	
     	<service id="security.authentication.factory.cas" class="%security.authentication.factory.cas.class%">
             <tag name="security.listener.factory" />
