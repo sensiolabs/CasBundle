@@ -1,8 +1,8 @@
 Add CAS authentication to Symfony2
 ==================================
 
--  More informations about `CAS`_ (Central Authentication Service).
--  Unlike `SimpleCasBundle`_, it's based on the Symfony2 security component.
+-  More informations about CAS_ (Central Authentication Service).
+-  Unlike SimpleCasBundle_, it's based on the Symfony2 security component.
 -  Proxy features are not yet available.
 
 Install the Bundle
@@ -25,7 +25,7 @@ Install the Bundle
         // in AppKernel::registerBundles()
         $bundles = array(
             // ...
-            new Bundle\Sensio\CasBundle\CasBundle(),
+            new Bundle\Sensio\CasBundle\SensioCasBundle(),
             // ...
         );
     
