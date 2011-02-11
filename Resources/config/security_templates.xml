@@ -6,8 +6,6 @@
     <parameters>
 
         <parameter key="security.authentication.factory.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationFactory</parameter>
-        <parameter key="security.authentication.listener.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationListener</parameter>
-        <parameter key="security.authentication.provider.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationProvider</parameter>
 
     </parameters>
     <services>
