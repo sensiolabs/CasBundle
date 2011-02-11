@@ -43,7 +43,7 @@ Deadly simple, here is an example:
             version: 2                          # version of the used CAS protocole
             cert:    /path/to/my/cert.pem       # ssl cert file path (if needed)
             request: curl                       # request adapter (curl, http or file)
-            
+
     .. code-block:: xml
 
         <cas:config
@@ -51,7 +51,7 @@ Deadly simple, here is an example:
             version="2"
             cert="/path/to/my/cert.pem "
             request="curl" />
-            
+
     .. code-block:: php
 
         $container->loadFromExtension('cas', 'config', array(
@@ -71,15 +71,15 @@ In order to to it, just look at the following example in YAML:
         security.config:
             templates:
                 - "%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml"
-                
+
     .. code-block:: xml
 
         <security:config>
             <template>%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml</template>
         </security:config>
-            
+
     .. code-block:: php
-        
+
         $container->loadFromExtension('security', 'config', array(
             'templates' => array(
                 '%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml'
@@ -96,45 +96,49 @@ As usual, here is a simple example (with the template):
     .. code-block:: yaml
 
         security.config:
-            templates:
+            factories:
                 - "%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml"
             providers:
                 my_provider:
-                    users:
-                        username: { roles: ROLE_USER }
             firewalls:
                 my_firewall:
-                    pattern:    /path/to/protected/url
-                    cas:        { provider: my_provider }
+                    pattern:  /regex/to/protected/url
+                    cas: { provider: my_provider }
+
+        services:
+            security.user.provider.my_provider:
+                class: My\FooBundle\Security\UserProvider
+                arguments:
 
     .. code-block:: xml
 
         <security:config>
-            <template>%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml</template>
+            <factory>%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml</factory>
             <provider name="my_provider">
-                <user name="username" roles="ROLE_USER">
             </provider>
-            <firewall name="my_firewall" pattern="/path/to/protected/url">
+            <firewall name="my_firewall" pattern="/regex/to/protected/url">
                 <cas provider="my_provider" />
             </firewall>
         </security:config>
 
+        <services>
+            <service id="security.user.provider.my_provider" class="My\FooBundle\Security\UserProvider">
+            </service>
+        </services>
+
     .. code-block:: php
 
         $container->loadFromExtension('security', 'config', array(
-            'templates' => array(
+            'factories' => array(
                 '%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml'
             ),
             'providers' => array(
                 'my_provider' => array(
-                    'users' => array(
-                        'username' => array('roles' => 'ROLE_USER')
-                    )
                 )
             ),
             'firewall'  => array(
                 'my_firewall' => array(
-                    'pattern' => '/path/to/protected/url',
+                    'pattern' => '/regex/to/protected/url',
                     'cas'     => array(
                         'provider' => 'my_provider'
                     )
@@ -142,6 +146,10 @@ As usual, here is a simple example (with the template):
             )
         ));
 
+        $container->setDefinition('security.user.provider.my_provider', new Definition(
+            'My\FooBundle\Security\UserProvider',
+            array()
+        ));
+
 .. _CAS:             http://www.jasig.org/cas
 .. _SimpleCasBundle: https://github.com/jmikola/SimpleCASBundle
- 
