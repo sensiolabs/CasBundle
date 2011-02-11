@@ -2,13 +2,20 @@
 
 namespace Bundle\Sensio\CasBundle\Security;
 
-use  Symfony\Bundle\FrameworkBundle\DependencyInjection\Security\Factory\SecurityFactoryInterface;
+use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\SecurityFactoryInterface;
+use Symfony\Component\DependencyInjection\Configuration\Builder\NodeBuilder;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Parameter;
 
 class CasAuthenticationFactory implements SecurityFactoryInterface
 {
-    public function create(ContainerBuilder $container, $id, $config, $userProvider, $providerIds, $defaultEntryPoint)
+    public function __construct()
+    {
+    }
+
+    public function create(ContainerBuilder $container, $id, $config, $userProvider, $defaultEntryPoint)
     {
         $provider = 'security.authentication.provider.cas.'.$id;
         $container
@@ -16,12 +23,19 @@ class CasAuthenticationFactory implements SecurityFactoryInterface
             ->setArguments(array(new Reference($userProvider), new Reference('security.account_checker')))
         ;
 
-        // listener
+        $listener = new Definition(
+            new Parameter('security.authentication.listener.cas.class'),
+            array(
+                new Reference('security.context'),
+                new Reference('security.authentication.manager'),
+                new Reference('cas'), // new Reference('security.authentication.cas_entry_point'),
+                new Reference('logger', ContainerBuilder::IGNORE_ON_INVALID_REFERENCE),
+            )
+        );
+
         $listenerId = 'security.authentication.listener.cas.'.$id;
-        $listener = $container->setDefinition($listenerId, clone $container->getDefinition('security.authentication.listener.cas'));
-        $arguments = $listener->getArguments();
-        $arguments[1] = new Reference($provider);
-        $listener->setArguments($arguments);
+        $container->setDefinition('security.authentication.listener.cas', $listener);
+        $container->setAlias($listenerId, 'security.authentication.listener.cas');
 
         return array($provider, $listenerId, 'security.authentication.cas_entry_point');
     }
@@ -34,5 +48,12 @@ class CasAuthenticationFactory implements SecurityFactoryInterface
     public function getKey()
     {
         return 'cas';
+    }
+
+    public function addConfiguration(NodeBuilder $builder)
+    {
+        $builder
+            ->scalarNode('provider')->end()
+        ;
     }
 }

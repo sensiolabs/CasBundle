@@ -2,12 +2,12 @@
 
 namespace Bundle\Sensio\CasBundle\Security;
 
-use Symfony\Component\Security\User\UserProviderInterface;
-use Symfony\Component\Security\User\AccountCheckerInterface;
-use Symfony\Component\Security\Authentication\Token\Token;
-use Symfony\Component\Security\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Authentication\Provider\PreAuthenticatedAuthenticationProvider;
-use Symfony\Component\Security\Authentication\Provider\AuthenticationProviderInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Core\User\AccountCheckerInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Token;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authentication\Provider\PreAuthenticatedAuthenticationProvider;
+use Symfony\Component\Security\Core\Authentication\Provider\AuthenticationProviderInterface;
 use Bundle\Sensio\CasBundle\Security\CasAuthenticationToken;
 
 class CasAuthenticationProvider implements AuthenticationProviderInterface

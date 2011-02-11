@@ -3,10 +3,11 @@
 namespace Bundle\Sensio\CasBundle\Security;
 
 use Bundle\Sensio\CasBundle\Service\Cas;
-use Symfony\Component\Security\Authentication\EntryPoint\AuthenticationEntryPointInterface;
-use Symfony\Component\Security\Exception\AuthenticationException;
+use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\EventDispatcher\EventInterface;
 use Bundle\Sensio\CasBundle\Service\Client;
 
 class CasAuthenticationEntryPoint implements AuthenticationEntryPointInterface
@@ -18,7 +19,7 @@ class CasAuthenticationEntryPoint implements AuthenticationEntryPointInterface
         $this->cas = $cas;
     }
 
-    public function start(Request $request, AuthenticationException $authException = null)
+    public function start(EventInterface $event, Request $request, AuthenticationException $authException = null)
     {
         return $this->cas->getLoginResponse($request);
     }

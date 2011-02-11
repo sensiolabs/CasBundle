@@ -2,14 +2,14 @@
 
 namespace Bundle\Sensio\CasBundle\Security;
 
-use Symfony\Component\Security\SecurityContext;
-use Symfony\Component\Security\Authentication\AuthenticationManagerInterface;
+use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
 use Symfony\Component\HttpKernel\Security\Firewall\PreAuthenticatedListener;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Exception\BadCredentialsException;
-use Symfony\Component\HttpKernel\Security\Firewall\ListenerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\Security\Http\Firewall\ListenerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Bundle\Sensio\CasBundle\Service\Cas;
 
@@ -25,12 +25,12 @@ class CasAuthenticationListener implements ListenerInterface
         $this->logger = $logger;
     }
 
-    public function register(EventDispatcher $dispatcher)
+    public function register(EventDispatcherInterface $dispatcher)
     {
         $dispatcher->connect('core.security', array($this, 'handle'), 0);
     }
 
-    public function unregister(EventDispatcher $dispatcher)
+    public function unregister(EventDispatcherInterface $dispatcher)
     {
     }
 

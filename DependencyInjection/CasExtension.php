@@ -4,18 +4,17 @@ namespace Bundle\Sensio\CasBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Loader\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class CasExtension extends Extension
 {
 
-    public function configLoad($config, ContainerBuilder $container)
+    public function configLoad(array $configs, ContainerBuilder $container)
     {
-        if (!$container->hasDefinition('cas')) {
-            $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
-            $loader->load('cas.xml');
-        }
-        foreach($config as $key => $value) {
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('cas.xml');
+        foreach(end($configs) as $key => $value) {
             $container->setParameter('cas.'.$key, $value);
         }
     }
