@@ -5,14 +5,14 @@
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
     <parameters>
 
-		<parameter key="security.authentication.factory.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationFactory</parameter>
+        <parameter key="security.authentication.factory.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationFactory</parameter>
         <parameter key="security.authentication.listener.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationListener</parameter>
         <parameter key="security.authentication.provider.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationProvider</parameter>
 
-	</parameters>
-	<services>
+    </parameters>
+    <services>
 
-    	<service id="security.authentication.factory.cas" class="%security.authentication.factory.cas.class%">
+        <service id="security.authentication.factory.cas" class="%security.authentication.factory.cas.class%">
             <tag name="security.listener.factory" />
         </service>
 

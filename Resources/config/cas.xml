@@ -5,31 +5,31 @@
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
     <parameters>
 
-		<parameter key="cas.class">Bundle\Sensio\CasBundle\Service\Cas</parameter>
-		<parameter key="cas.uri"></parameter>
-		<parameter key="cas.version">2</parameter>
-		<parameter key="cas.cert">false</parameter>
-		<parameter key="cas.request">curl</parameter>
+        <parameter key="cas.class">Bundle\Sensio\CasBundle\Service\Cas</parameter>
+        <parameter key="cas.uri"></parameter>
+        <parameter key="cas.version">2</parameter>
+        <parameter key="cas.cert">false</parameter>
+        <parameter key="cas.request">curl</parameter>
 
-		<parameter key="security.authentication.cas_entry_point.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationEntryPoint</parameter>
-		<parameter key="security.authentication.listener.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationListener</parameter>
-		<parameter key="security.logout.handler.cas.class">Bundle\Sensio\CasBundle\Security\CasLogoutHandler</parameter>
+        <parameter key="security.authentication.cas_entry_point.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationEntryPoint</parameter>
+        <parameter key="security.authentication.listener.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationListener</parameter>
+        <parameter key="security.logout.handler.cas.class">Bundle\Sensio\CasBundle\Security\CasLogoutHandler</parameter>
 
     </parameters>
     <services>
 
-    	<service id="cas" class="%cas.class%">
+        <service id="cas" class="%cas.class%">
             <argument>%cas.uri%</argument>
-			<argument>%cas.version%</argument>
-			<argument>%cas.cert%</argument>
-			<argument>%cas.request%</argument>
+            <argument>%cas.version%</argument>
+            <argument>%cas.cert%</argument>
+            <argument>%cas.request%</argument>
         </service>
 
         <service id="security.authentication.cas_entry_point" class="%security.authentication.cas_entry_point.class%">
-        	<argument type="service" id="cas" />
+            <argument type="service" id="cas" />
         </service>
 
-		<service id="security.logout.handler.cas" class="%security.logout.handler.cas.class%">
+        <service id="security.logout.handler.cas" class="%security.logout.handler.cas.class%">
             <argument type="service" id="cas" />
         </service>
 
