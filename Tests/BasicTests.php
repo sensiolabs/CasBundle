@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle\Tests\CasBundle;
+namespace Sensio\CasBundle\Tests\CasBundle;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

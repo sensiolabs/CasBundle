@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle\Service\Response;
+namespace Sensio\CasBundle\Service\Response;
 
 abstract class Response
 {

@@ -25,7 +25,7 @@ Install the Bundle
         // in AppKernel::registerBundles()
         $bundles = array(
             // ...
-            new Bundle\Sensio\CasBundle\SensioCasBundle(),
+            new Sensio\CasBundle\SensioCasBundle(),
             // ...
         );
 

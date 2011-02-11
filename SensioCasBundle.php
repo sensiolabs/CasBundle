@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle;
+namespace Sensio\CasBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

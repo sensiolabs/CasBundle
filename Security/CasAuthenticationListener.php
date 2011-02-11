@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle\Security;
+namespace Sensio\CasBundle\Security;
 
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\Security\Exception\BadCredentialsException;
 use Symfony\Component\Security\Http\Firewall\ListenerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\Event;
-use Bundle\Sensio\CasBundle\Service\Cas;
+use Sensio\CasBundle\Service\Cas;
 
 class CasAuthenticationListener implements ListenerInterface
 {

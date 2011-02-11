@@ -1,12 +1,12 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle\Security;
+namespace Sensio\CasBundle\Security;
 
 use Symfony\Component\HttpKernel\Security\Logout\LogoutHandlerInterface;
 use Symfony\Component\Security\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Bundle\Sensio\CasBundle\Service\Cas;
+use Sensio\CasBundle\Service\Cas;
 
 class CasLogoutHandler implements LogoutHandlerInterface
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle\Security;
+namespace Sensio\CasBundle\Security;
 
 use Symfony\Component\Security\Authentication\Token\Token;
 

@@ -1,16 +1,16 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle\Service;
+namespace Sensio\CasBundle\Service;
 
-use Bundle\Sensio\CasBundle\Service\Protocol\V1Protocol;
-use Bundle\Sensio\CasBundle\Service\Protocol\V2Protocol;
+use Sensio\CasBundle\Service\Protocol\V1Protocol;
+use Sensio\CasBundle\Service\Protocol\V2Protocol;
 
-use Bundle\Sensio\CasBundle\Service\Request\CurlRequest;
-use Bundle\Sensio\CasBundle\Service\Request\HttpRequest;
-use Bundle\Sensio\CasBundle\Service\Request\FileRequest;
+use Sensio\CasBundle\Service\Request\CurlRequest;
+use Sensio\CasBundle\Service\Request\HttpRequest;
+use Sensio\CasBundle\Service\Request\FileRequest;
 
-use Bundle\Sensio\CasBundle\Service\Response\V1Response;
-use Bundle\Sensio\CasBundle\Service\Response\V2Response;
+use Sensio\CasBundle\Service\Response\V1Response;
+use Sensio\CasBundle\Service\Response\V2Response;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

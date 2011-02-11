@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle\Service\Protocol;
+namespace Sensio\CasBundle\Service\Protocol;
 
 interface ProtocolInterface
 {

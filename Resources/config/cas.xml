@@ -5,16 +5,16 @@
     xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
     <parameters>
 
-        <parameter key="cas.class">Bundle\Sensio\CasBundle\Service\Cas</parameter>
+        <parameter key="cas.class">Sensio\CasBundle\Service\Cas</parameter>
         <parameter key="cas.uri"></parameter>
         <parameter key="cas.version">2</parameter>
         <parameter key="cas.cert">false</parameter>
         <parameter key="cas.request">curl</parameter>
 
-        <parameter key="security.authentication.cas_entry_point.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationEntryPoint</parameter>
-        <parameter key="security.authentication.listener.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationListener</parameter>
-        <parameter key="security.authentication.provider.cas.class">Bundle\Sensio\CasBundle\Security\CasAuthenticationProvider</parameter>
-        <parameter key="security.logout.handler.cas.class">Bundle\Sensio\CasBundle\Security\CasLogoutHandler</parameter>
+        <parameter key="security.authentication.cas_entry_point.class">Sensio\CasBundle\Security\CasAuthenticationEntryPoint</parameter>
+        <parameter key="security.authentication.listener.cas.class">Sensio\CasBundle\Security\CasAuthenticationListener</parameter>
+        <parameter key="security.authentication.provider.cas.class">Sensio\CasBundle\Security\CasAuthenticationProvider</parameter>
+        <parameter key="security.logout.handler.cas.class">Sensio\CasBundle\Security\CasLogoutHandler</parameter>
 
     </parameters>
     <services>

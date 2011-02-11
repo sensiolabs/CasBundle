@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle\Service\Request;
+namespace Sensio\CasBundle\Service\Request;
 
 abstract class Request
 {

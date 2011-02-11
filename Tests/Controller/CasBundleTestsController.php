@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle\Tests\Controller;
+namespace Sensio\CasBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
