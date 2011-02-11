@@ -14,7 +14,13 @@ class CasExtension extends Extension
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('cas.xml');
-        foreach(end($configs) as $key => $value) {
+
+        $config = array();
+        foreach ($configs as $conf) {
+            $config = array_merge($config, $conf);
+        }
+
+        foreach($config as $key => $value) {
             $container->setParameter('cas.'.$key, $value);
         }
     }
