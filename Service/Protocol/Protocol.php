@@ -1,8 +1,8 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle\Service\Protocole;
+namespace Bundle\Sensio\CasBundle\Service\Protocol;
 
-abstract class Protocole
+abstract class Protocol
 {
     protected $baseUri;
 

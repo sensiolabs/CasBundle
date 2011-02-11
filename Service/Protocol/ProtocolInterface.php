@@ -1,8 +1,8 @@
 <?php
 
-namespace Bundle\Sensio\CasBundle\Service\Protocole;
+namespace Bundle\Sensio\CasBundle\Service\Protocol;
 
-interface ProtocoleInterface
+interface ProtocolInterface
 {
     public function getLoginUri($service);
     public function getLogoutUri($service);

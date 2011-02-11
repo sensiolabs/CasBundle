@@ -2,8 +2,8 @@
 
 namespace Bundle\Sensio\CasBundle\Service;
 
-use Bundle\Sensio\CasBundle\Service\Protocole\V1Protocole;
-use Bundle\Sensio\CasBundle\Service\Protocole\V2Protocole;
+use Bundle\Sensio\CasBundle\Service\Protocol\V1Protocol;
+use Bundle\Sensio\CasBundle\Service\Protocol\V2Protocol;
 
 use Bundle\Sensio\CasBundle\Service\Request\CurlRequest;
 use Bundle\Sensio\CasBundle\Service\Request\HttpRequest;
@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 class Cas
 {
     protected
-        $protocole,
+        $protocol,
         $version,
         $certFile,
         $requestType;
@@ -28,12 +28,12 @@ class Cas
         $this->version = $version;
         $this->certFile = $certFile;
         $this->requestType = $requestType;
-        $this->protocole = $this->getProtocole($baseUri, $version);
+        $this->protocol = $this->getProtocol($baseUri, $version);
     }
 
     public function getValidation(Request $request)
     {
-        $uri = $this->protocole->getValidationUri($request->getUri(), $request->query->get('ticket'));
+        $uri = $this->protocol->getValidationUri($request->getUri(), $request->query->get('ticket'));
 
         return $this->getRequest($uri)
             ->setCertFile($this->certFile)
@@ -43,7 +43,7 @@ class Cas
 
     public function getLogoutResponse(Request $request)
     {
-        $uri = $this->protocole->getLogoutUri($request->getUri());
+        $uri = $this->protocol->getLogoutUri($request->getUri());
 
         $response = new Response();
         $response->setRedirect($uri);
@@ -53,7 +53,7 @@ class Cas
 
     public function getLoginResponse(Request $request)
     {
-        $uri = $this->protocole->getLoginUri($request->getUri());
+        $uri = $this->protocol->getLoginUri($request->getUri());
 
         $response = new Response();
         $response->setRedirect($uri);
@@ -66,11 +66,11 @@ class Cas
         return $request->query->has('ticket');
     }
 
-    protected function getProtocole($baseUri)
+    protected function getProtocol($baseUri)
     {
         switch((int)$this->version) {
-            case 1: return new V1Protocole($baseUri);
-            case 2: return new V2Protocole($baseUri);
+            case 1: return new V1Protocol($baseUri);
+            case 2: return new V2Protocol($baseUri);
             default: throw new \Exception('Invalid CAS version : '.(string)$this->version);
         }
     }

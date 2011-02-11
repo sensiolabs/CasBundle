@@ -40,7 +40,7 @@ Deadly simple, here is an example:
 
         cas.config:
             uri:     https://my.cas.server:443/ # URI of the cas server
-            version: 2                          # version of the used CAS protocole
+            version: 2                          # version of the used CAS protocol
             cert:    /path/to/my/cert.pem       # ssl cert file path (if needed)
             request: curl                       # request adapter (curl, http or file)
 
