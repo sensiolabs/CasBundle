@@ -82,7 +82,7 @@ In order to to it, just look at the following example in YAML:
 
         $container->loadFromExtension('security', 'config', array(
             'templates' => array(
-                '%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml'
+                '%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_factories.xml'
             )
         ));
 

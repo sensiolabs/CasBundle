@@ -6,7 +6,7 @@ security.config:
         firewall:
             pattern: /cas/protected
             cas:     { provider: provider }
-    template:        %kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml
+    template:        %kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_factories.xml
 
 cas.config:
     uri:             http://sandbox.dev/cas/server
