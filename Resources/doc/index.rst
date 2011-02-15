@@ -69,19 +69,19 @@ In order to to it, just look at the following example in YAML:
     .. code-block:: yaml
 
         security.config:
-            templates:
+            factories:
                 - "%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml"
 
     .. code-block:: xml
 
         <security:config>
-            <template>%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml</template>
+            <factory>%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml</factory>
         </security:config>
 
     .. code-block:: php
 
         $container->loadFromExtension('security', 'config', array(
-            'templates' => array(
+            'factories' => array(
                 '%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_factories.xml'
             )
         ));
