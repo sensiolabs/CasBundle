@@ -7,10 +7,9 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class CasExtension extends Extension
+class SensioCasExtension extends Extension
 {
-
-    public function configLoad(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('cas.xml');
@@ -37,7 +36,7 @@ class CasExtension extends Extension
 
     public function getAlias()
     {
-        return 'cas';
+        return 'sensio_cas';
     }
 
 }
