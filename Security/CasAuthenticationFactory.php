@@ -3,7 +3,7 @@
 namespace Sensio\CasBundle\Security;
 
 use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\SecurityFactoryInterface;
-use Symfony\Component\DependencyInjection\Configuration\Builder\NodeBuilder;
+use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Definition;
