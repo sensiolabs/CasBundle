@@ -36,7 +36,7 @@ abstract class Protocol
             '/\?$/'             => ''
         );
 
-        $url = preg_replace(array_keys($replacements), array_values($replacements), $uri);
+        return preg_replace(array_keys($replacements), array_values($replacements), $uri);
     }
 
     protected function buildUri($action, array $parameters = array())

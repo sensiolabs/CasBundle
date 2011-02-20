@@ -15,10 +15,13 @@ class CurlRequest extends Request implements RequestInterface
 
         $options = array(
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_HEADERFUNCTION => array($this->response, 'setHeaders'),
-            CURLOPT_COOKIE => implode(';', $this->cookies),
+            CURLOPT_HEADERFUNCTION => array($this, 'addResponseHeader'),
             CURLOPT_HTTPHEADER => $this->headers,
         );
+
+        if (count($this->cookies)) {
+            $options[CURLOPT_COOKIE] = implode(';', $this->cookies);
+        }
 
         if($this->certFile) {
             $sslOptions = array(
@@ -39,5 +42,11 @@ class CurlRequest extends Request implements RequestInterface
         curl_close($request);
 
         return $this;
+    }
+
+    public function addResponseHeader($request, $header)
+    {
+        $this->response->addHeader($header);
+        return strlen($header);
     }
 }

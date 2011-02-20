@@ -25,6 +25,11 @@ abstract class Response
         return $this;
     }
 
+    public function addHeader($header)
+    {
+        $this->headers[] = (string) $header;
+    }
+
     public function isSuccess()
     {
         return $this->success;

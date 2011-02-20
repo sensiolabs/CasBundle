@@ -32,6 +32,8 @@ class CasAuthenticationProvider implements AuthenticationProviderInterface
          }
 
          $user = $this->userProvider->loadUserByUsername($user);
+         $token->setUser($user);
+         $token->setRoles($user->getRoles());
 
          $this->accountChecker->checkPostAuth($user);
 

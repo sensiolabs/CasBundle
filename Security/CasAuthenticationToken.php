@@ -2,19 +2,19 @@
 
 namespace Sensio\CasBundle\Security;
 
-use Symfony\Component\Security\Authentication\Token\Token;
+use Symfony\Component\Security\Core\Authentication\Token\Token;
 
 class CasAuthenticationToken extends Token
 {
     protected $casAttributes;
 
-    public function __construct($user, array $attributes = array(), $userProviderName = null, array $roles = array())
+    public function __construct($user, array $attributes = array(), $providerKey = null, array $roles = array())
     {
         parent::__construct($roles);
 
         $this->setUser($user);
         $this->credentials = null;
-        $this->userProviderName = $userProviderName;
+        $this->providerKey = $providerKey;
         $this->casAttributes = $attributes;
 
         parent::setAuthenticated(true);
