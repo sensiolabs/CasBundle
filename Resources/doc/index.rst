@@ -97,7 +97,7 @@ As usual, here is a simple example (with the template):
 
         security.config:
             factories:
-                - "%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml"
+                - "%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_factories.xml"
             providers:
                 my_provider:
             firewalls:
@@ -113,7 +113,7 @@ As usual, here is a simple example (with the template):
     .. code-block:: xml
 
         <security:config>
-            <factory>%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml</factory>
+            <factory>%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_factories.xml</factory>
             <provider name="my_provider">
             </provider>
             <firewall name="my_firewall" pattern="/regex/to/protected/url">
