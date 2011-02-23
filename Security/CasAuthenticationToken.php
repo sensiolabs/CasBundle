@@ -8,13 +8,13 @@ class CasAuthenticationToken extends Token
 {
     protected $casAttributes;
 
-    public function __construct($user, array $attributes = array(), $providerKey = null, array $roles = array())
+    public function __construct($user, array $attributes = array(), $userProviderName = null, array $roles = array())
     {
         parent::__construct($roles);
 
         $this->setUser($user);
         $this->credentials = null;
-        $this->providerKey = $providerKey;
+        $this->userProviderName = $userProviderName;
         $this->casAttributes = $attributes;
 
         parent::setAuthenticated(true);
