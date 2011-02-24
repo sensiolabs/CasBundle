@@ -55,8 +55,7 @@ class Cas
     {
         $uri = $this->protocol->getLoginUri($request->getUri());
 
-        $response = new Response();
-        $response->setRedirect($uri);
+        $response = new Response('', 302, array('Location' => $uri));
 
         return $response;
     }
