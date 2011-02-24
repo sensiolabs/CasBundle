@@ -13,7 +13,7 @@ use Sensio\CasBundle\Service\Response\V1Response;
 use Sensio\CasBundle\Service\Response\V2Response;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class Cas
 {
@@ -55,7 +55,7 @@ class Cas
     {
         $uri = $this->protocol->getLoginUri($request->getUri());
 
-        $response = new Response('', 302, array('Location' => $uri));
+        $response = new RedirectResponse($uri);
 
         return $response;
     }
