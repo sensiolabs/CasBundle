@@ -19,7 +19,7 @@ class SensioCasExtension extends Extension
             $config = array_merge($config, $conf);
         }
 
-        foreach($config as $key => $value) {
+        foreach ($config as $key => $value) {
             $container->setParameter('cas.'.$key, $value);
         }
     }

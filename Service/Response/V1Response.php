@@ -9,7 +9,7 @@ class V1Response extends Response implements ResponseInterface
 {
     public function setBody($body)
     {
-        if($body === false) {
+        if ($body === false) {
             $this->failureMessage = 'Request failed';
             $this->success = false;
             return $this;
@@ -18,7 +18,7 @@ class V1Response extends Response implements ResponseInterface
         $data = explode("\n", str_replace("\n\n", "\n", str_replace("\r", "\n", $body)));
         $this->success = strtolower($data[0]) === 'yes';
 
-        if($this->success) {
+        if ($this->success) {
             $this->username = (count($data) > 1 && $data[1]) ? $data[1] : 'Undefined';
         } else {
             $this->failureMessage = (count($data) > 1 && $data[1]) ? $data[1] : 'Unknown error';

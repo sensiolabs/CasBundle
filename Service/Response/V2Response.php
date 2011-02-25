@@ -9,16 +9,16 @@ class V2Response extends Response implements ResponseInterface
 {
     public function setBody($body)
     {
-        if($body === false) {
+        if ($body === false) {
             $this->failureMessage = 'Request failed';
             $this->success = false;
             return $this;
         }
 
         $xml = new \DOMDocument();
-        if($xml->loadXML($body)) {
+        if ($xml->loadXML($body)) {
 
-            foreach($xml->firstChild->childNodes as $child) {
+            foreach ($xml->firstChild->childNodes as $child) {
                 if($child->nodeName === 'cas:authenticationSuccess') {
                     $root = $child;
                     $this->success = true;
@@ -30,9 +30,9 @@ class V2Response extends Response implements ResponseInterface
                 }
             }
 
-            if($this->success) {
-                foreach($root->childNodes as $child) {
-                    switch($child->nodeName) {
+            if ($this->success) {
+                foreach ($root->childNodes as $child) {
+                    switch ($child->nodeName) {
 
                         case 'cas:user':
                             $this->username = $child->textContent;
@@ -40,7 +40,7 @@ class V2Response extends Response implements ResponseInterface
 
                         case 'cas:attributes':
                             foreach($child->childrenNodes as $attr) {
-                                if($attr->nodeName != '#text') {
+                                if ($attr->nodeName != '#text') {
                                     $this->attributes[$attr->nodeName] = $attr->textContent;
                                 }
                             }
@@ -49,7 +49,7 @@ class V2Response extends Response implements ResponseInterface
                         case 'cas:attribute':
                             $name = $child->attributes->getNamedItem('name')->value;
                             $value = $child->attributes->getNamedItem('value')->value;
-                            if($name && $value) {
+                            if ($name && $value) {
                                 $this->attributes[$name] = $value;
                             }
                             break;

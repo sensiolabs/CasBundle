@@ -23,7 +23,9 @@ class CurlRequest extends Request implements RequestInterface
             $options[CURLOPT_COOKIE] = implode(';', $this->cookies);
         }
 
-        if($this->certFile) {
+        curl_setopt_array($request, $options);
+
+        if ($this->certFile) {
             $sslOptions = array(
                 CURLOPT_SSL_VERIFYHOST => 1,
                 CURLOPT_SSL_VERIFYPEER => 1,
@@ -35,7 +37,6 @@ class CurlRequest extends Request implements RequestInterface
             );
         }
 
-        curl_setopt_array($request, $options);
         curl_setopt_array($request, $sslOptions);
 
         $this->response->setBody(curl_exec($request));
