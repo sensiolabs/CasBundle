@@ -3,7 +3,7 @@
 namespace Sensio\CasBundle\Security;
 
 use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\SecurityFactoryInterface;
-use Symfony\Component\Config\Definition\Builder\NodeBuilder;
+use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Definition;
@@ -50,10 +50,12 @@ class CasAuthenticationFactory implements SecurityFactoryInterface
         return 'cas';
     }
 
-    public function addConfiguration(NodeBuilder $builder)
+    public function addConfiguration(NodeDefinition $node)
     {
-        $builder
-            ->scalarNode('provider')->end()
+        $node
+            ->children()
+                ->scalarNode('provider')->end()
+            ->end()
         ;
     }
 }
