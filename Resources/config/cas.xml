@@ -5,12 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
 
-        <parameter key="cas.class">Sensio\CasBundle\Service\Cas</parameter>
-        <parameter key="cas.uri"></parameter>
-        <parameter key="cas.version">2</parameter>
-        <parameter key="cas.cert">false</parameter>
-        <parameter key="cas.request">curl</parameter>
-
+        <parameter key="sensio_cas.class">Sensio\CasBundle\Service\Cas</parameter>
         <parameter key="security.authentication.cas_entry_point.class">Sensio\CasBundle\Security\CasAuthenticationEntryPoint</parameter>
         <parameter key="security.authentication.listener.cas.class">Sensio\CasBundle\Security\CasAuthenticationListener</parameter>
         <parameter key="security.authentication.provider.cas.class">Sensio\CasBundle\Security\CasAuthenticationProvider</parameter>
@@ -19,19 +14,19 @@
     </parameters>
     <services>
 
-        <service id="cas" class="%cas.class%">
-            <argument>%cas.uri%</argument>
-            <argument>%cas.version%</argument>
-            <argument>%cas.cert%</argument>
-            <argument>%cas.request%</argument>
+        <service id="sensio_cas" class="%sensio_cas.class%">
+            <argument>%sensio_cas.uri%</argument>
+            <argument>%sensio_cas.version%</argument>
+            <argument>%sensio_cas.cert%</argument>
+            <argument>%sensio_cas.request%</argument>
         </service>
 
         <service id="security.authentication.cas_entry_point" class="%security.authentication.cas_entry_point.class%">
-            <argument type="service" id="cas" />
+            <argument type="service" id="sensio_cas" />
         </service>
 
         <service id="security.logout.handler.cas" class="%security.logout.handler.cas.class%">
-            <argument type="service" id="cas" />
+            <argument type="service" id="sensio_cas" />
         </service>
 
     </services>
