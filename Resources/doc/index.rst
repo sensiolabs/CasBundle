@@ -8,17 +8,25 @@ Add CAS authentication to Symfony2
 Install the Bundle
 ------------------
 
-1. Create a `Sensio` directory (if not exists) in your `src/Bundle` directory.
-
-2. Add the sources from github.com (GIT must be installed ;)
+1. Add the sources from github.com (GIT must be installed ;)
 
     .. code-block:: text
 
         // if your you're using git for your project
-        git submodule add git@github.com:sensio/CasBundle.git src/Bundle/Sensio/CasBundle
+        git submodule add git://github.com/sensio/CasBundle.git vendor/bundles/Sensio/CasBundle
 
         // or if your project is not under git control
-        git clone git@github.com:sensio/CasBundle.git
+        mkdir -p vendor/bundles/Sensio/CasBundle
+        cd vendor/bundles/Sensio/CasBundle
+        git clone git://github.com/sensio/CasBundle.git
+
+2. Add the namespace in the autoloader::
+
+        // app/autoload.php
+        $loader->registerNamespaces(array(
+            'Sensio' => __DIR__.'/../vendor/bundles',
+            // your other namespaces
+        );
 
 3. Then add it to your AppKernel class::
 
@@ -68,21 +76,21 @@ In order to to it, just look at the following example in YAML:
 
     .. code-block:: yaml
 
-        security.config:
+        security:
             factories:
-                - "%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml"
+                - "%kernel.root_dir%/../vendor/bundles/Sensio/CasBundle/Resources/config/security_factories.xml"
 
     .. code-block:: xml
 
         <security:config>
-            <factory>%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml</factory>
+            <security:factory>%kernel.root_dir%/../vendor/bundles/Sensio/CasBundle/Resources/config/security_factories.xml</security:factory>
         </security:config>
 
     .. code-block:: php
 
         $container->loadFromExtension('security', 'config', array(
             'factories' => array(
-                '%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_factories.xml'
+                '%kernel.root_dir%/../vendor/bundles/Sensio/CasBundle/Resources/config/security_factories.xml'
             )
         ));
 
@@ -95,45 +103,45 @@ As usual, here is a simple example (with the template):
 
     .. code-block:: yaml
 
-        security.config:
+        security:
             factories:
-                - "%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_factories.xml"
+                - "%kernel.root_dir%/../vendor/bundles/Sensio/CasBundle/Resources/config/security_factories.xml"
             providers:
                 my_provider:
+                    id: acme_demo.user_provider
             firewalls:
                 my_firewall:
                     pattern:  /regex/to/protected/url
                     cas: { provider: my_provider }
 
         services:
-            security.user.provider.my_provider:
+            acme_demo.user_provider:
                 class: My\FooBundle\Security\UserProvider
                 arguments:
 
     .. code-block:: xml
 
         <security:config>
-            <factory>%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_factories.xml</factory>
-            <provider name="my_provider">
-            </provider>
-            <firewall name="my_firewall" pattern="/regex/to/protected/url">
-                <cas provider="my_provider" />
-            </firewall>
+            <security:factory>%kernel.root_dir%/../vendor/bundles/Sensio/CasBundle/Resources/config/security_factories.xml</security:factory>
+            <security:provider name="my_provider" id="acme_demo.user_provider" />
+            <security:firewall name="my_firewall" pattern="/regex/to/protected/url">
+                <security:cas provider="my_provider" />
+            </security:firewall>
         </security:config>
 
         <services>
-            <service id="security.user.provider.my_provider" class="My\FooBundle\Security\UserProvider">
-            </service>
+            <service id="acme_demo.user_provider" class="My\FooBundle\Security\UserProvider" />
         </services>
 
     .. code-block:: php
 
         $container->loadFromExtension('security', 'config', array(
             'factories' => array(
-                '%kernel.root_dir%/../src/Bundle/Sensio/CasBundle/Resources/config/security_templates.xml'
+                '%kernel.root_dir%/../vendor/bundles/Sensio/CasBundle/Resources/config/security_factories.xml'
             ),
             'providers' => array(
                 'my_provider' => array(
+                    'id' => 'acme_demo.user_provider'
                 )
             ),
             'firewall'  => array(
@@ -146,7 +154,7 @@ As usual, here is a simple example (with the template):
             )
         ));
 
-        $container->setDefinition('security.user.provider.my_provider', new Definition(
+        $container->setDefinition('acme_demo.user_provider', new Definition(
             'My\FooBundle\Security\UserProvider',
             array()
         ));
