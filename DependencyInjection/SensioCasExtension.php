@@ -16,8 +16,7 @@ class SensioCasExtension extends Extension
         $configuration = new Configuration();
 
         // add configuration
-        $tree = $configuration->getConfigTree();
-        $config = $processor->process($tree, $configs);
+        $config = $processor->processConfiguration($configuration, $configs);
 
         foreach ($config as $key => $value) {
             $container->setParameter('sensio_cas.'.$key, $value);
@@ -27,10 +26,4 @@ class SensioCasExtension extends Extension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('cas.xml');
     }
-
-    public function getAlias()
-    {
-        return 'sensio_cas';
-    }
-
 }

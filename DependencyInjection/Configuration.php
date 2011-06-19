@@ -3,15 +3,16 @@
 namespace Sensio\CasBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-class Configuration
+class Configuration implements ConfigurationInterface
 {
     /**
      * Generates the configuration tree.
      *
-     * @return Symfony\Component\Config\Definition\NodeInterface
+     * @return TreeBuilder
      */
-    public function getConfigTree()
+    public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
 
@@ -24,7 +25,6 @@ class Configuration
                     ->scalarNode('request')->defaultValue('curl')->end()
                 ->end()
             ->end()
-            ->buildTree()
         ;
     }
 }
