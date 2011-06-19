@@ -45,5 +45,4 @@ abstract class Request
     {
         return $this->response;
     }
-
 }

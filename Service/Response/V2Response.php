@@ -12,12 +12,12 @@ class V2Response extends Response implements ResponseInterface
         if ($body === false) {
             $this->failureMessage = 'Request failed';
             $this->success = false;
+
             return $this;
         }
 
         $xml = new \DOMDocument();
         if ($xml->loadXML($body)) {
-
             foreach ($xml->firstChild->childNodes as $child) {
                 if($child->nodeName === 'cas:authenticationSuccess') {
                     $root = $child;
@@ -33,7 +33,6 @@ class V2Response extends Response implements ResponseInterface
             if ($this->success) {
                 foreach ($root->childNodes as $child) {
                     switch ($child->nodeName) {
-
                         case 'cas:user':
                             $this->username = $child->textContent;
                             break;
@@ -64,7 +63,6 @@ class V2Response extends Response implements ResponseInterface
             } else {
                 $this->failureMessage = (string)$root->textContent;
             }
-
         } else {
             $this->success = false;
             $this->failureMessage = 'Invalid response';

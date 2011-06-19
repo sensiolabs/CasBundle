@@ -4,7 +4,7 @@ namespace Sensio\CasBundle\Service\Response;
 
 interface ResponseInterface
 {
-    public function isSuccess();
-    public function getUsername();
-    public function getAttributes();
+    function isSuccess();
+    function getUsername();
+    function getAttributes();
 }
