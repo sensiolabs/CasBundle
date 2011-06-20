@@ -23,11 +23,11 @@ class CasAuthenticationProvider implements AuthenticationProviderInterface
 
     public function authenticate(TokenInterface $token)
     {
-        if (! $this->supports($token)) {
+        if (!$this->supports($token)) {
             return null;
         }
 
-        if (! $user = $token->getUser()) {
+        if (!$user = $token->getUser()) {
             throw new BadCredentialsException('No pre-authenticated principal found in request.');
         }
 

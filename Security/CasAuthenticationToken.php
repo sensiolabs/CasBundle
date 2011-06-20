@@ -2,9 +2,9 @@
 
 namespace Sensio\CasBundle\Security;
 
-use Symfony\Component\Security\Core\Authentication\Token\Token;
+use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
 
-class CasAuthenticationToken extends Token
+class CasAuthenticationToken extends AbstractToken
 {
     protected $casAttributes;
 
