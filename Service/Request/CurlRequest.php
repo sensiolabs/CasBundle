@@ -48,6 +48,7 @@ class CurlRequest extends Request implements RequestInterface
     public function addResponseHeader($request, $header)
     {
         $this->response->addHeader($header);
+
         return strlen($header);
     }
 }

@@ -12,6 +12,7 @@ class V1Response extends Response implements ResponseInterface
         if ($body === false) {
             $this->failureMessage = 'Request failed';
             $this->success = false;
+
             return $this;
         }
 

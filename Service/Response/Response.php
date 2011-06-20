@@ -5,18 +5,11 @@ namespace Sensio\CasBundle\Service\Response;
 abstract class Response
 {
     protected
-        $headers,
+        $headers = array(),
         $success,
         $username,
-        $attributes,
+        $attributes = array(),
         $failureMessage;
-
-    public function __construct()
-    {
-        $this->headers = array();
-        $this->attributes = array();
-        $this->success = null;
-    }
 
     public function setHeaders(array $headers)
     {

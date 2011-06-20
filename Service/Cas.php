@@ -45,19 +45,14 @@ class Cas
     {
         $uri = $this->protocol->getLogoutUri($request->getUri());
 
-        $response = new Response();
-        $response->setRedirect($uri);
-
-        return $response;
+        return new RedirectResponse($uri);
     }
 
     public function getLoginResponse(Request $request)
     {
         $uri = $this->protocol->getLoginUri($request->getUri());
 
-        $response = new RedirectResponse($uri);
-
-        return $response;
+        return new RedirectResponse($uri);
     }
 
     public function isValidationRequest(Request $request)
@@ -67,31 +62,39 @@ class Cas
 
     protected function getProtocol($baseUri)
     {
-        switch((int)$this->version) {
-            case 1: return new V1Protocol($baseUri);
-            case 2: return new V2Protocol($baseUri);
-            default: throw new \Exception('Invalid CAS version : '.(string)$this->version);
+        switch((int) $this->version) {
+            case 1:
+                return new V1Protocol($baseUri);
+            case 2:
+                return new V2Protocol($baseUri);
+            default:
+                throw new \Exception('Invalid CAS version : '.$this->version);
         }
     }
 
     protected function getResponse()
     {
-        switch((int)$this->version) {
-            case 1: return new V1Response();
-            case 2: return new V2Response();
-            default: throw new \Exception('Invalid CAS version : '.(string)$this->version);
+        switch ((int) $this->version) {
+            case 1:
+                return new V1Response();
+            case 2:
+                return new V2Response();
+            default:
+                throw new \Exception('Invalid CAS version : '.$this->version);
         }
     }
 
     protected function getRequest($uri)
     {
-        switch(strtolower($this->requestType))
-        {
-            case 'curl': return new CurlRequest($uri);
-            case 'http': return new HttpRequest($uri);
-            case 'file': return new FileRequest($uri);
-            default: throw new \Exception('Invalid CAS request type : '.(string)$this->requestType);
+        switch (strtolower($this->requestType)) {
+            case 'curl':
+                return new CurlRequest($uri);
+            case 'http':
+                return new HttpRequest($uri);
+            case 'file':
+                return new FileRequest($uri);
+            default:
+                throw new \Exception('Invalid CAS request type : '.$this->requestType);
         }
     }
-
 }

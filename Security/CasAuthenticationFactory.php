@@ -7,14 +7,9 @@ use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\Definition;
-use Symfony\Component\DependencyInjection\Parameter;
 
 class CasAuthenticationFactory implements SecurityFactoryInterface
 {
-    public function __construct()
-    {
-    }
-
     public function create(ContainerBuilder $container, $id, $config, $userProvider, $defaultEntryPoint)
     {
         $provider = 'security.authentication.provider.cas.'.$id;
@@ -24,11 +19,11 @@ class CasAuthenticationFactory implements SecurityFactoryInterface
         ;
 
         $listener = new Definition(
-            new Parameter('security.authentication.listener.cas.class'),
+            '%security.authentication.listener.cas.class%',
             array(
                 new Reference('security.context'),
                 new Reference('security.authentication.manager'),
-                new Reference('cas'), // new Reference('security.authentication.cas_entry_point'),
+                new Reference('sensio_cas'),
                 new Reference('logger', ContainerBuilder::IGNORE_ON_INVALID_REFERENCE),
             )
         );
