@@ -3,7 +3,7 @@
 namespace Sensio\CasBundle\Security;
 
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Core\User\AccountCheckerInterface;
+use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Token;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authentication\Provider\PreAuthenticatedAuthenticationProvider;
@@ -13,12 +13,12 @@ use Sensio\CasBundle\Security\CasAuthenticationToken;
 class CasAuthenticationProvider implements AuthenticationProviderInterface
 {
     protected $userProvider;
-    protected $accountChecker;
+    protected $userChecker;
 
-    public function __construct(UserProviderInterface $userProvider, AccountCheckerInterface $accountChecker)
+    public function __construct(UserProviderInterface $userProvider, UserCheckerInterface $userChecker)
     {
         $this->userProvider = $userProvider;
-        $this->accountChecker = $accountChecker;
+        $this->userChecker = $userChecker;
     }
 
     public function authenticate(TokenInterface $token)
@@ -35,7 +35,7 @@ class CasAuthenticationProvider implements AuthenticationProviderInterface
         $token->setUser($user);
         $token->setRoles($user->getRoles());
 
-        $this->accountChecker->checkPostAuth($user);
+        $this->userChecker->checkPostAuth($user);
 
         return $token;
     }
