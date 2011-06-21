@@ -20,6 +20,11 @@ class CasAuthenticationToken extends AbstractToken
         parent::setAuthenticated(true);
     }
 
+    public function getCredentials()
+    {
+        return '';
+    }
+
     public function getCasAttributes()
     {
         return $this->attributes;
