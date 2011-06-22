@@ -32,12 +32,12 @@ class CasAuthenticationProvider implements AuthenticationProviderInterface
         }
 
         $user = $this->userProvider->loadUserByUsername($user);
-        $token->setUser($user);
-        $token->setRoles($user->getRoles());
-
         $this->userChecker->checkPostAuth($user);
 
-        return $token;
+        $authenticatedToken = new CasAuthenticationToken($user, $token->getCasAttributes(), $user->getRoles());
+        $authenticatedToken->setAttributes($token->getAttributes());
+
+        return $authenticatedToken;
     }
 
     public function supports(TokenInterface $token)
