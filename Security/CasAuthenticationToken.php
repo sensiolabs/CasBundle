@@ -8,13 +8,11 @@ class CasAuthenticationToken extends AbstractToken
 {
     protected $casAttributes;
 
-    public function __construct($user, array $attributes = array(), $userProviderName = null, array $roles = array())
+    public function __construct($user, array $attributes = array(), array $roles = array())
     {
         parent::__construct($roles);
 
         $this->setUser($user);
-        $this->credentials = null;
-        $this->userProviderName = $userProviderName;
         $this->casAttributes = $attributes;
 
         parent::setAuthenticated(true);
