@@ -25,6 +25,6 @@ class CasAuthenticationToken extends AbstractToken
 
     public function getCasAttributes()
     {
-        return $this->attributes;
+        return $this->casAttributes;
     }
 }
