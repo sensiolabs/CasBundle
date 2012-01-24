@@ -36,10 +36,6 @@ class CasAuthenticationListener implements ListenerInterface
         list($username, $attributes) = $this->getTokenData($event->getRequest());
 
         if (null !== $token = $this->securityContext->getToken()) {
-            if ($token->isImmutable()) {
-                return;
-            }
-
             if ($token instanceof CasAuthenticationToken && $token->isAuthenticated() && (string) $token === $username) {
                 return;
             }
